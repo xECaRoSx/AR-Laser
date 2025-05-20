@@ -3,27 +3,33 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Video;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
     [Header("UI Panels")]
-    [Tooltip("Text Mesh Pro - Touch to continue")] public GameObject TouchText;
     public GameObject titleUI;
     public GameObject scanningUI;
+    public GameObject trainingUI;
+    public GameObject finishedUI;
+    public VideoPlayer videoPlayer;
+    public AudioSource audioPlayer;
+    public TimeBarSqueeze timeBar;
 
     [Header("Task Box Elements")]
+    public GameObject taskBox;
     public TextMeshProUGUI taskName;
     public TextMeshProUGUI stepDescription;
     public Image stepImage;
+    public RawImage stepVideo;
 
     [Header("Warning Box Elements")]
     public TextMeshProUGUI warningDescription;
 
     public Button nextButton;
     public Button previousButton;
-    public GameObject Media;
 
     [Header("Task & Step Data")]
     public List<TaskData> allTasks;
@@ -32,6 +38,7 @@ public class GameManager : MonoBehaviour
     private float currentTime;
     private int currentTaskIndex = 0;
     private int currentStepIndex = 0;
+    private List<GameObject> trackedObjects = new List<GameObject>();
 
     private void Awake()
     {
@@ -40,66 +47,44 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        OpenTitle();  // Open the title screen
+        StartTitle();  // Open the title screen
     }
 
     // ========================= WORKFLOW CONTROL =========================
-    // =========================== Title Screen ===========================
-    public void OpenTitle()
+    // --------------------------- Title Screen ---------------------------
+    public void StartTitle()
     {
-        StartCoroutine(TouchTextDelay(2f));    // Coroutine: Delay before showing the touch text
+        titleUI.SetActive(true);
         scanningUI.SetActive(false);
+        trainingUI.SetActive(false);
+        finishedUI.SetActive(false);
     }
-    private IEnumerator TouchTextDelay(float delay)
+    // ----------------------------- QR Code ------------------------------
+    public void StartScanning()
     {
-        TouchText.SetActive(false);    // To be sure it is off at the start
-        yield return new WaitForSeconds(delay);
-        TouchText.SetActive(true);    // Set active true after delay
+        titleUI.SetActive(false);
+        scanningUI.SetActive(true);
+        trainingUI.SetActive(false);
+        finishedUI.SetActive(false);
     }
-    // ============================= QR Code ==============================
-    public void ScanQRCode()
+    // ----------------------------- Training -----------------------------
+    public void StartTraining()
     {
-        //TouchText.SetActive(true);
-        //UI_QRCode.SetActive(true);
+        titleUI.SetActive(false);
+        scanningUI.SetActive(false);
+        trainingUI.SetActive(true);
+        finishedUI.SetActive(false);
+        LoadStep();
     }
-    // ======================= Task 1: Introduction =======================
-    public void TaskIntro()
+    public void Finishing()
     {
-        //UI_QRCode.SetActive(false);
-        //UI_Introduction.SetActive(true);
-    }
-    // ========================= Task 2: Power On =========================
-    public void TaskPowerOn()
-    {
-        //UI_Introduction.SetActive(false);
-        //UI_Training.SetActive(true);
-        //currentTime = maxTrainingTime;
-        //LoadStep();
-    }
-    // ======================= Task 3: PC Connection ======================
-    public void TaskPCConnect()
-    {
-        
-    }
-    // ================== Task 4: Printing Configuration ==================
-    public void TaskPrintConfig()
-    {
-
-    }
-    // =================== Task 5: Material Preparation ===================
-    public void TaskMatPrepare()
-    {
-
-    }
-    // ===================== Task 6: After Finishing ======================
-    public void TaskFinishing(string message = "คุณทำขั้นตอนเสร็จเรียบร้อยแล้ว!")
-    {
-        //UI_Training.SetActive(false);
-        //UI_Finished.SetActive(true);
-        //subtitleText.text = message;
-        //audioSource.Stop();
+        titleUI.SetActive(false);
+        scanningUI.SetActive(false);
+        trainingUI.SetActive(false);
+        finishedUI.SetActive(true);
     }
     // ====================================================================
+
 
     // =========================== STEP CONTROL ===========================
 
@@ -134,27 +119,64 @@ public class GameManager : MonoBehaviour
     // ----------------------------- Load Step ----------------------------
     private void LoadStep()
     {
-        if (stepTimerCoroutine != null)
-            StopCoroutine(stepTimerCoroutine);    // Stop the previous step timer
+        if (stepTimerCoroutine != null) StopCoroutine(stepTimerCoroutine);          // Check if a previous step timer coroutine is still running, stop it
 
-        StepData step = allTasks[currentTaskIndex].steps[currentStepIndex];
+        StepData step = allTasks[currentTaskIndex].steps[currentStepIndex];         // Fetch the current step data (stepName, guideObject, duration, etc.)
 
-        taskName.text = $"Task {currentTaskIndex + 1}: {allTasks[currentTaskIndex].taskName}";
-        stepDescription.text = step.questInfo;
-        //warningText.text = step.hasWarning ? step.warningText : "";
+        taskName.text = allTasks[currentTaskIndex].taskName;                        // Change Task Name (TextMeshPro)
+        stepDescription.text = step.description;                                    // Change Step Description (TextMeshPro)
+        warningDescription.text = step.hasWarning ? step.warningText : "";
 
-        if (step.instructionImage != null) stepImage.sprite = step.instructionImage;
+        foreach (GameObject obj in trackedObjects)                                  // Deactivate all registered objects first
+        {
+            obj.SetActive(false);
+        }
+        if (step.guideObject != null && step.guideObject.Count > 0)                 // Activate the guide objects for the current step
+        {
+            foreach (GameObject obj in step.guideObject)
+            {
+                if (obj != null) obj.SetActive(true);
+            }
+        }
 
-        // TODO: เพิ่มระบบเล่นเสียง voiceover ถ้าต้องการ
-        // audioSource.clip = step.voiceover;
-        // audioSource.Play();
+        if (step.instructionImage != null)                                          // Check if the step has an instruction image
+        {
+            stepImage.sprite = step.instructionImage;
+            stepImage.gameObject.SetActive(true);
+            stepVideo.gameObject.SetActive(false);
+        }
+        else if (step.instructionVideo != null)                                     // If the step has an instruction video instead
+        {
+            videoPlayer.clip = step.instructionVideo;
+            stepImage.gameObject.SetActive(false);
+            stepVideo.gameObject.SetActive(true);
+        }
+        else                                                                        // If neither, hide both
+        {
+            stepImage.gameObject.SetActive(false);
+            stepVideo.gameObject.SetActive(false);
+        }
 
-        // SetActive guide object (If available)
-        foreach (GameObject obj in step.guideObject)
-            obj.SetActive(true);
+        audioPlayer.PlayOneShot(step.voiceover);                                    // Play the voiceover
 
-        // Auto start the step timer
-        stepTimerCoroutine = StartCoroutine(StepTimer(step.duration));
+        if (step.hasWarning)                                                        // Check if the step has a warning
+        {
+            warningDescription.text = step.warningText;                             // Set the warning text
+            warningDescription.transform.parent.gameObject.SetActive(true);         // WarningBox SetActive True
+        }
+        else                                                                        // If the step doesn't have a warning
+        {
+            warningDescription.text = "";                                           // Set the warning text to empty
+            warningDescription.transform.parent.gameObject.SetActive(false);        // WarningBox SetActive False
+        }
+
+        if (taskBox.GetComponent<Animator>().GetBool("IsHiding") == true)           // If task box is hiding, play unhide animation
+        {
+            taskBox.GetComponent<Animator>().SetBool("IsHiding", false);            // Set IsHiding (animator bool parameter) to false
+        }
+
+        stepTimerCoroutine = StartCoroutine(StepTimer(step.duration));              // Start countdown and time bar
+        timeBar.StartTimer(step.duration);
     }
     private IEnumerator StepTimer(float duration)
     {
@@ -165,8 +187,21 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
-        // Skip to the next step when time is up
-        NextStep();
+        NextStep();                                                                 // Auto skip to next step when time's up
     }
     // ====================================================================
+    public void RegisterGuideObject(GameObject obj, int taskIndex, int stepIndex)   // Register guide object from AR tracked image prefab
+    {
+        trackedObjects.Add(obj);
+
+        if (taskIndex < allTasks.Count && stepIndex < allTasks[taskIndex].steps.Count)
+        {
+            allTasks[taskIndex].steps[stepIndex].guideObject.Add(obj);
+            obj.SetActive(false); // default inactive until that step is active
+        }
+        else
+        {
+            Debug.LogWarning($"Invalid task/step index for {obj.name}: Task {taskIndex}, Step {stepIndex}");
+        }
+    }
 }

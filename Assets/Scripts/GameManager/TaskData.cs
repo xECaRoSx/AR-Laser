@@ -21,7 +21,7 @@ public class StepData
     public float duration = 20f;    // 20 seconds
 
     [TextArea(2, 5)]
-    public string questInfo;
+    public string description;
     public AudioClip voiceover;
 
     public Sprite instructionImage;
