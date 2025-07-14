@@ -65,7 +65,6 @@ public class TimeBarSqueeze : MonoBehaviour
     }
     Color GetInterpolatedColor(float t)
     {
-        // ไล่สีจากมากไปน้อย
         if (t > 0.75f)
         {
             float lerpT = Mathf.InverseLerp(1f, 0.75f, t);
