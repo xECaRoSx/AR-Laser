@@ -53,6 +53,7 @@ public class TaskManager : MonoBehaviour
 
             if (currentTask >= allTasks.Count)
             {
+                AudioManager.Instance.StopVO();
                 GameManager.Instance.GoToFinish();
                 return;
             }

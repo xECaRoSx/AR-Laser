@@ -34,16 +34,9 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void PlaySFX(AudioClip clip)
+    public void StopVO()
     {
-        if (clip != null) sfxSource.PlayOneShot(clip);
-    }
-
-    public void SetBGM(AudioClip bgm, bool loop = true)
-    {
-        bgmSource.clip = bgm;
-        bgmSource.loop = loop;
-        bgmSource.Play();
+        voiceSource.Stop();
     }
 
     public void StopAll()
