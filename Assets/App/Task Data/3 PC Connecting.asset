@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6dc31ef739dbfd541adc68696ea3375f, type: 3}
+  m_Name: 3 PC Connecting
+  m_EditorClassIdentifier: 
+  taskName: "\u0E01\u0E32\u0E23\u0E40\u0E0A\u0E37\u0E48\u0E2D\u0E21\u0E15\u0E48\u0E2D\u0E04\u0E2D\u0E21\u0E1E\u0E34\u0E27\u0E40\u0E15\u0E2D\u0E23\u0E4C"
+  steps:
+  - stepName: "\u0E15\u0E48\u0E2D\u0E2A\u0E32\u0E22 USB Type-A \u0E40\u0E02\u0E49\u0E32\u0E04\u0E2D\u0E21\u0E1E\u0E34\u0E27\u0E40\u0E15\u0E2D\u0E23\u0E4C"
+    description: "\u0E2B\u0E22\u0E34\u0E1A\u0E2B\u0E31\u0E27 USB Type-A (\u0E2B\u0E31\u0E27\u0E2A\u0E35\u0E48\u0E40\u0E2B\u0E25\u0E35\u0E48\u0E22\u0E21\u0E41\u0E1A\u0E19)
+      \u0E40\u0E2A\u0E35\u0E22\u0E1A\u0E40\u0E02\u0E49\u0E32\u0E01\u0E31\u0E1A\u0E1E\u0E2D\u0E23\u0E4C\u0E15
+      USB \u0E02\u0E2D\u0E07\u0E04\u0E2D\u0E21\u0E1E\u0E34\u0E27\u0E40\u0E15\u0E2D\u0E23\u0E4C
+      \n\n<size=12.5><color=red>\u0E2B\u0E32\u0E01\u0E2A\u0E32\u0E22\u0E16\u0E39\u0E01\u0E40\u0E2A\u0E35\u0E22\u0E1A\u0E44\u0E27\u0E49\u0E41\u0E25\u0E49\u0E27
+      \u0E2A\u0E32\u0E21\u0E32\u0E23\u0E16\u0E02\u0E49\u0E32\u0E21\u0E02\u0E31\u0E49\u0E19\u0E15\u0E2D\u0E19\u0E16\u0E31\u0E14\u0E44\u0E1B\u0E44\u0E14\u0E49\u0E40\u0E25\u0E22</color></size>"
+    voiceovers:
+    - {fileID: 8300000, guid: 675c24937b13de74383864fd0867ad65, type: 3}
+    guideObject:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    image: {fileID: 21300000, guid: 6d937e462defa7540ac8e1546bb36fac, type: 3}
+    video: {fileID: 0}
+    warning: 
+    duration: 17
+  - stepName: "\u0E15\u0E48\u0E2D\u0E2A\u0E32\u0E22 USB Type-B \u0E40\u0E02\u0E49\u0E32\u0E40\u0E04\u0E23\u0E37\u0E48\u0E2D\u0E07\u0E40\u0E25\u0E40\u0E0B\u0E2D\u0E23\u0E4C"
+    description: "\u0E2B\u0E22\u0E34\u0E1A\u0E2B\u0E31\u0E27 USB Type-B \u0E2D\u0E35\u0E01\u0E14\u0E49\u0E32\u0E19
+      (\u0E2B\u0E31\u0E27\u0E2A\u0E35\u0E48\u0E40\u0E2B\u0E25\u0E35\u0E48\u0E22\u0E21
+      \u0E02\u0E19\u0E32\u0E14\u0E43\u0E2B\u0E0D\u0E48) \u0E40\u0E2A\u0E35\u0E22\u0E1A\u0E40\u0E02\u0E49\u0E32\u0E01\u0E31\u0E1A\u0E1E\u0E2D\u0E23\u0E4C\u0E15\u0E1A\u0E23\u0E34\u0E40\u0E27\u0E13\u0E14\u0E49\u0E32\u0E19
+      \u0E02\u0E27\u0E32\u0E02\u0E2D\u0E07\u0E40\u0E04\u0E23\u0E37\u0E48\u0E2D\u0E07\u0E40\u0E25\u0E40\u0E0B\u0E2D\u0E23\u0E4C"
+    voiceovers:
+    - {fileID: 8300000, guid: 6d022f61d63fb0c44a26508794826be0, type: 3}
+    guideObject:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    image: {fileID: 21300000, guid: 9daa118f1068c5a419dd8892e1490b8b, type: 3}
+    video: {fileID: 0}
+    warning: 
+    duration: 13
