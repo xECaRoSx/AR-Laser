@@ -1,2 +1,2 @@
 # ARLaser
-Sakaerat-Projects
+Sakaerat Project - Augmented reality training app for laser machine
