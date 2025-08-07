@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6dc31ef739dbfd541adc68696ea3375f, type: 3}
   m_Name: 4 Preparing Material
   m_EditorClassIdentifier: 
-  taskName: "\u0E08\u0E31\u0E14\u0E40\u0E15\u0E23\u0E35\u0E22\u0E21\u0E27\u0E31\u0E2A\u0E14\u0E38\u0E41\u0E25\u0E30\u0E15\u0E31\u0E49\u0E07\u0E04\u0E48\u0E32\u0E40\u0E04\u0E23\u0E37\u0E48\u0E2D\u0E07\u0E40\u0E25\u0E40\u0E0B\u0E2D\u0E23\u0E4C"
+  taskName: "\u0E40\u0E15\u0E23\u0E35\u0E22\u0E21\u0E27\u0E31\u0E2A\u0E14\u0E38\u0E41\u0E25\u0E30\u0E15\u0E31\u0E49\u0E07\u0E04\u0E48\u0E32\u0E40\u0E25\u0E40\u0E0B\u0E2D\u0E23\u0E4C"
   steps:
   - stepName: "\u0E27\u0E32\u0E07\u0E41\u0E1C\u0E48\u0E19\u0E27\u0E31\u0E2A\u0E14\u0E38\u0E25\u0E07\u0E43\u0E19\u0E40\u0E04\u0E23\u0E37\u0E48\u0E2D\u0E07\u0E40\u0E25\u0E40\u0E0B\u0E2D\u0E23\u0E4C"
     description: "\u0E40\u0E1B\u0E34\u0E14\u0E1D\u0E32\u0E40\u0E04\u0E23\u0E37\u0E48\u0E2D\u0E07\u0E40\u0E25\u0E40\u0E0B\u0E2D\u0E23\u0E4C
@@ -23,6 +23,9 @@ MonoBehaviour:
     voiceovers:
     - {fileID: 8300000, guid: eaba93936beb93b4ebef8e50acfb3f7d, type: 3}
     guideObject:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
@@ -45,6 +48,9 @@ MonoBehaviour:
     voiceovers:
     - {fileID: 8300000, guid: 2531fe180761d734a9df657c39649474, type: 3}
     guideObject:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
