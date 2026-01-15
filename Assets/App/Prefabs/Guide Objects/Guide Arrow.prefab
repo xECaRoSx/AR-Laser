@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6497125857387447547}
+  - component: {fileID: 8319837202068817847}
   - component: {fileID: 5076567200715216310}
   m_Layer: 0
   m_Name: Guide Arrow
@@ -33,6 +34,20 @@ Transform:
   - {fileID: 3247117109947950878}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8319837202068817847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 291567424219044695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75e8a76ee51426c439099397a0fa58d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  taskNumber: 2
+  stepNumber: 1
 --- !u!114 &5076567200715216310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,17 +73,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: acc28ebf6b6e1dc449edc141618217ef,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: acc28ebf6b6e1dc449edc141618217ef,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: acc28ebf6b6e1dc449edc141618217ef,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: acc28ebf6b6e1dc449edc141618217ef,
         type: 3}
@@ -78,7 +93,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: acc28ebf6b6e1dc449edc141618217ef,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.01755
+      value: 0.08775
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: acc28ebf6b6e1dc449edc141618217ef,
         type: 3}

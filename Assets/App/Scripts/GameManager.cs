@@ -22,7 +22,6 @@ public class GameManager : MonoBehaviour
     {
         currentState = state;
         UIManager.Instance.UpdateUI(state);
-
         Debug.Log($"[GameManager] Current state: {state}");
     }
 
@@ -31,6 +30,16 @@ public class GameManager : MonoBehaviour
         TaskManager.Instance.ResetAll();
         SwitchState(AppState.Training);
         TaskManager.Instance.LoadStep();
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("[GameManager] QuitGame called");
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#elif UNITY_ANDROID || UNITY_STANDALONE
+    Application.Quit();
+#endif
     }
 
     public void GoToTitle() => SwitchState(AppState.Title);
