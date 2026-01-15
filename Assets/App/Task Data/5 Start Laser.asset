@@ -32,7 +32,10 @@ MonoBehaviour:
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
-    image: {fileID: 21300000, guid: 3a019748805449c499d82ada559e2ca3, type: 3}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    image: {fileID: 21300000, guid: c8ff9ea722d83c74daf0421c75c9030f, type: 3}
     video: {fileID: 0}
     warning: 
     duration: 12
@@ -42,6 +45,9 @@ MonoBehaviour:
     voiceovers:
     - {fileID: 8300000, guid: 32da669711093b74eb6a207022031489, type: 3}
     guideObject:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
     - {fileID: 0}
